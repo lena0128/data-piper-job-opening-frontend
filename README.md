@@ -1,5 +1,5 @@
 # Data Piper Job Opening Frontend
-<img src="./images/used-for-github-repo.png" alt="project thumbnail" />
+<img src="./public/images/used-for-github-repo.png" alt="project thumbnail" />
 
 SPA features job openings search tool with read, and create candidate operations.
 
