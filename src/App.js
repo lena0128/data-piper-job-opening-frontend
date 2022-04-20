@@ -9,7 +9,6 @@ import Navbar from './components/Navbar';
 import Loading from './components/Loading';
 import FrontPage from './components/FrontPage';
 import CandidatesContainer from './components/CandidatesContainer';
-import Footer from './components/Footer';
 
 function App() {
   const jobs = useSelector(state => state.jobs.jobs)
@@ -43,7 +42,6 @@ function App() {
        <Route path="/candidates">
           { candidatesLoading ? <Loading /> : <CandidatesContainer candidates={candidates} /> }
        </Route> 
-       <Footer /> 
     </div>
   );
 }
