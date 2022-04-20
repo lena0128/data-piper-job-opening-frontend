@@ -1,8 +1,22 @@
 import React from 'react';
 
-function JobSearchBar(){
+function JobSearchBar(props){
+    const findJobsLabel = <label className="search-label">FIND JOBS</label>
+    const clearALL = <button className="search-button" onClick={props.clearSearch}>CLEAR</button>
     return(
-        <div>Job Search Bar</div>
+        <div className="search-bar">
+            <input 
+                type="text"
+                placeholder="Please enter a job title or a client name..."
+                value={props.search}
+                onChange={props.handleSearch}
+                className="search-input" 
+            />
+
+        { props.search.length > 2 ? clearALL : findJobsLabel } 
+        
+
+        </div>
     )
 }
 

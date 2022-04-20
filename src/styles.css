@@ -7,7 +7,7 @@ body {
     margin: 0;
 }
 
-.header {
+.navbar {
     max-height: 200px;
     background-color: #072b99;
     display: flex;
@@ -17,18 +17,21 @@ body {
     color: white;
 }
 
-.header--logo {
+.navbar--logo {
     max-width: 200px;
     padding: 10px;
+    margin-right: 200px;
 }
 
-.header--title {
+.navbar--title {
     font-size: 1.25rem;
 }
 
-.header--text {
-    font-size: 0.75rem;
-    font-weight: 500;
+.navbar--text {
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
 }
 
 .job-card {
@@ -49,7 +52,7 @@ body {
     max-width: 800px;
     display: grid;
     /* grid-template-rows / grid-template-columns values */
-    grid-template: 40px 40px 40px 40px 40px/ 1fr 1fr;
+    grid-template: 40px 40px 40px 40px 10px 40px 40px/ 1fr 1fr;
     gap: 17px;
     margin: 0 auto;
     margin-bottom: 20px;
