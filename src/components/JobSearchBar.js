@@ -7,7 +7,7 @@ function JobSearchBar(props){
         <div className="search-bar">
             <input 
                 type="text"
-                placeholder="Please enter a job title or a client name..."
+                placeholder="Please enter a job title..."
                 value={props.search}
                 onChange={props.handleSearch}
                 className="search-input" 

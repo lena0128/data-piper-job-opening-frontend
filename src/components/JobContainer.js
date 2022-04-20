@@ -10,9 +10,9 @@ function JobContainer(props){
     const jobElements = props.jobs.map(job => <JobCard key={job.id} job={job} />)
 
     function displaySearchResult() {
-        const searchResult = props.jobs.filter(job => job.role.toLowerCase().includes(search.toLowerCase()) || job.client.toLowerCase() === search.toLowerCase());
+        const searchResult = props.jobs.filter(job => job.role.toLowerCase().includes(search.toLowerCase()));
         
-        if(search.length > 6 && searchResult.length === 0) {
+        if(search.length > 4 && searchResult.length === 0) {
            return(
              <h3 className="no-search-result">No openings found. Please try some other options.</h3>
            )
@@ -23,13 +23,13 @@ function JobContainer(props){
     }
 
     return(
-        <div className="job-container">
+        <div>
             <Switch>
                 <Route exact path="/jobs" render={() => {
                     return (
                       <>
                         <JobSearchBar search={search} handleSearch={(e) => setSearch(e.target.value)} clearSearch={() => setSearch("")} />
-                       <div className="job-container">{ search.length === 0 ? jobElements : displaySearchResult() }</div>
+                       <section className="job-container">{ search.length === 0 ? jobElements : displaySearchResult() }</section>
                       </>  
                     )
                 }} />
@@ -37,7 +37,6 @@ function JobContainer(props){
                 <Route path="/jobs/:id" render={(routeInfo) => {
                       const paramsId = parseInt(routeInfo.match.params.id) 
                       const singleJob = props.jobs.find((job) => job.id === paramsId)
-                      console.log(singleJob)
                       return <JobPage job={singleJob} goBack={() => routeInfo.history.push("/jobs")} />
                   }}>
   

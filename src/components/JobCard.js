@@ -2,27 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 function JobCard(props){
+  let badgeText;
+  if(props.job.urgency === "High") {
+    badgeText = "URGENT HIRING"
+  } else if (props.job.urgency === "Med" || props.job.urgency === "Low") {
+    badgeText = "";
+  }
     return(
-        <>
+      <Link to={`/jobs/${props.job.id}`}>
         <div className="job-card">
-          <img src="" alt={props.job.role} className="card--thumb" />
-          <div className="card--stats">
-            <div className="card--urgency">
-              <p className="urgency--text">Urgency: {props.job.urgency}</p>
-            </div>
-
-            <h1 className="card--name">{props.job.role}</h1>
-            <p className="card--client">Client: {props.job.client}</p>
-                    
+          {badgeText && <div className="card--badge">{badgeText}</div>}
+          <img src={props.job.thumb} alt={props.job.role} className="card--thumb" />
+            <h1 className="card--name">{props.job.role} <small className="card--text">| {props.job.client}</small></h1>
           </div>
-            <Link to={`/jobs/${props.job.id}`}>
-              <button>
-                LEARN MORE
-              </button>
-            </Link>
-        </div>
-        <hr className="line" />
-        </>
+        </Link>
     )
 }
 

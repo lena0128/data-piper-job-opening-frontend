@@ -3,9 +3,11 @@ import { createCandidate } from './actions/candidateActions';
 import { useDispatch } from 'react-redux';
 
 function CandidateForm(props){
+
+    console.log(props.myJobId)
     const dispatch = useDispatch();
     
-    const [ formData, setFormData ] = useState({
+    const instialState = {
         firstName: "",
         lastName: "",
         phone: "",
@@ -14,9 +16,9 @@ function CandidateForm(props){
         city: "",
         state: "",
         zipcode: "",
-    })
+    }
+    const [ formData, setFormData ] = useState(instialState)
 
-    const [ jobInfo, setJobInfo ] = useState("4. Datavault 2.0 / PwC")
 
     function handleFormChange(e){
         setFormData({
@@ -28,7 +30,7 @@ function CandidateForm(props){
 
     function handleFormSubmit(e) {
         e.preventDefault();
-        const job_id = jobInfo.split(".")[0]
+        const job_id = props.myJobId;
         const first_name = formData.firstName
         const last_name = formData.lastName
         const phone = formData.phone
@@ -37,8 +39,10 @@ function CandidateForm(props){
         const city = formData.city
         const state = formData.state
         const zipcode = formData.zipcode
+        console.log({first_name, last_name, phone, email, address, city, state, zipcode, job_id})
         dispatch(createCandidate({first_name, last_name, phone, email, address, city, state, zipcode, job_id}))
-
+        setFormData(instialState)
+        alert("Candidate successfully submitted!")
     }
 
     return(
@@ -117,17 +121,6 @@ function CandidateForm(props){
                 value={formData.zipcode}
                 onChange={handleFormChange} 
             />
-
-            <label htmlFor="jobInfo">What job is this candidate applied to?</label>
-            <select
-                id="jobInfo"
-                className="form-select"
-                name="jobInfo"
-                value={jobInfo}
-                onChange={(e) => setJobInfo(e.target.value)}  
-            >
-                {props.jobs.map(job => <option key={job.id} >{job.id}. {job.role} / {job.client}</option>)}
-            </select>
 
             <button
                 className="form-button"
