@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import JobSearchBar from './JobSearchBar';
-import JobCard from './JobCard'
+import JobCard from './JobCard';
+import { Switch, Route } from 'react-router-dom'; 
+import JobPage from './JobPage';
 
 function JobContainer(props){
     const [search, setSearch ] = useState("")
@@ -22,8 +24,26 @@ function JobContainer(props){
 
     return(
         <div className="job-container">
-            <JobSearchBar search={search} handleSearch={(e) => setSearch(e.target.value)} clearSearch={() => setSearch("")} />
-            <div className="job-container">{ search.length === 0 ? jobElements : displaySearchResult() }</div>
+            <Switch>
+                <Route exact path="/jobs" render={() => {
+                    return (
+                      <>
+                        <JobSearchBar search={search} handleSearch={(e) => setSearch(e.target.value)} clearSearch={() => setSearch("")} />
+                       <div className="job-container">{ search.length === 0 ? jobElements : displaySearchResult() }</div>
+                      </>  
+                    )
+                }} />
+
+                <Route path="/jobs/:id" render={(routeInfo) => {
+                      const paramsId = parseInt(routeInfo.match.params.id) 
+                      const singleJob = props.jobs.find((job) => job.id === paramsId)
+                      console.log(singleJob)
+                      return <JobPage job={singleJob} goBack={() => routeInfo.history.push("/jobs")} />
+                  }}>
+  
+              </Route> 
+
+            </Switch>
         </div>
     )
 }

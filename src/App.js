@@ -23,14 +23,14 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <Route exact path="/jobs">
-        <>
+      <Route exact path="/">
         <FrontPage />
+      </Route>
+      <Route path="/jobs">
          { jobsLoading ? <Loading /> :<JobContainer jobs={jobs} /> }
-       </>
        </Route>
 
-       <Route exact path="/candidates/new">
+       <Route path="/candidates/new">
           <CandidateForm jobs={jobs}/>
        </Route>  
     </div>

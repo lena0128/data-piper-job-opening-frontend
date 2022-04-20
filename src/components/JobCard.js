@@ -5,16 +5,19 @@ function JobCard(props){
     return(
         <>
         <div className="job-card">
-            <h3>{props.job.role}</h3>
-            <h5>Client: {props.job.client}</h5>
-            <p>
-                Point of Contact: {props.job.poc} - <span>{props.job.email}</span>
-            </p>
-            <p>Urgency: {props.job.urgency}</p>
-            <p>Skills Needed: {props.job.skillsNeeded}</p>
-            <Link to="/candidates/new">
+          <img src="" alt={props.job.role} className="card--thumb" />
+          <div className="card--stats">
+            <div className="card--urgency">
+              <p className="urgency--text">Urgency: {props.job.urgency}</p>
+            </div>
+
+            <h1 className="card--name">{props.job.role}</h1>
+            <p className="card--client">Client: {props.job.client}</p>
+                    
+          </div>
+            <Link to={`/jobs/${props.job.id}`}>
               <button>
-                ADD CANDIDATE
+                LEARN MORE
               </button>
             </Link>
         </div>
